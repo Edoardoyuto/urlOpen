@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ゲストメニュー</title>
+</head>
+<body>
+    <h2>紐づいている先生一覧</h2>
+
+    <ul>
+        <li th:each="link : ${teacherLinks}">
+            先生ID: <span th:text="${link.teacherId}"></span> （登録日: <span th:text="${#dates.format(link.joinedAt, 'yyyy/MM/dd HH:mm')}"></span>）
+        </li>
+    </ul>
+
+    <h2>招待コードで先生に紐づけ</h2>
+    <form th:action="@{/invite-code/join}" method="post" th:object="${inviteCodeForm}">
+        <div>
+            <label>招待コード</label>
+            <input type="text" th:field="*{code}" maxlength="6" required>
+        </div>
+        <div>
+            <input type="submit" value="登録する">
+        </div>
+    </form>
+
+    <p th:if="${message}" th:text="${message}"></p>
+</body>
+</html>

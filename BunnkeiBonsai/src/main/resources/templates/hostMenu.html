@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>先生メニュー</title>
+</head>
+<body>
+    <h2>先生メニュー</h2>
+
+    <!-- 招待コード発行 -->
+    <h3>招待コード発行</h3>
+    <form th:action="@{/invite-code/generate}" method="post">
+        <button type="submit">招待コードを発行する</button>
+    </form>
+    <p th:if="${inviteCode}" th:text="'発行済み招待コード: ' + ${inviteCode}"></p>
+
+    <!-- 生徒一覧 -->
+    <h3>生徒一覧</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>生徒ID</th>
+                <th>送信対象にするか</th>
+                <th>更新</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.studentId}"></td>
+                <td>
+                    <form th:action="@{/student/update-enabled}" method="post">
+                        <input type="checkbox" name="isEnabled" th:checked="${student.enabled}">
+                        <input type="hidden" name="id" th:value="${student.id}">
+                        <button type="submit">更新</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- URL 登録フォーム -->
+    <h3>URLを登録する</h3>
+    <form th:action="@{/url/register}" method="post">
+        <label>ラベル：</label><input type="text" name="label" required>
+        <label>URL：</label><input type="url" name="url" required>
+        <button type="submit">登録</button>
+    </form>
+
+    <!-- 登録済URL一覧 -->
+    <h3>登録済みURL一覧</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ラベル</th>
+                <th>URL</th>
+                <th>登録日</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="url : ${urls}">
+                <td th:text="${url.label}">ラベル</td>
+                <td><a th:href="${url.url}" th:text="${url.url}" target="_blank"></a></td>
+                <td th:text="${#dates.format(url.createdAt, 'yyyy/MM/dd HH:mm')}">登録日</td>
+				<td>
+				    <form th:action="@{/url/delete}" method="post">
+				        <input type="hidden" name="urlId" th:value="${url.id}" />
+				        <button type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
+				    </form>
+				</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
