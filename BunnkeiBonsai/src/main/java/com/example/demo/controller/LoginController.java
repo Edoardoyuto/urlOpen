@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class LoginController {
-	public final LoginService  service;
+	public final LoginService  service;//DBを使うためのサービス
 	private final HttpSession session; 
 	
 	@GetMapping("/login")
@@ -44,10 +44,7 @@ public class LoginController {
 	 * @return 表示画面
 	 */
 	@PostMapping("/login")
-	public String login(Model model,LoginForm form) {
-		System.out.println(form.toString());
-		var encordedPassword = passwordEncoder.encode(form.getPassword());
-		System.out.println(encordedPassword);
+	public String login(Model model,LoginForm form) {//pringbootが自動的にLoginFormをインスタンス化して、フォームのデータを詰めてくれる
 		var userInfo = service.searchUserId(form.getLoginId());
 		boolean isCorrectUserAuth = userInfo.isPresent()
 				&&passwordEncoder.matches(form.getPassword(), userInfo.get().getPassword());

@@ -46,7 +46,7 @@ public class UrlController {
 
         urlRepository.save(url);
 
-        return "redirect:/hostMenu"; // ★リダイレクト先を変更
+        return "redirect:/hostMenu"; 
     }
 
     

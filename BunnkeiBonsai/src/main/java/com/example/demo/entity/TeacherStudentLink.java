@@ -27,6 +27,7 @@ public class TeacherStudentLink {
 
     @Column(name = "invite_code")
     private String inviteCode;
-
-    private boolean isEnabled = true;
+    
+    @Column(name = "is_enabled")
+    private boolean enabled;
 }

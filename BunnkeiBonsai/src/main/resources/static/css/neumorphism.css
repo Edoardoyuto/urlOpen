@@ -1,0 +1,341 @@
+
+/* Neumorphism Style */
+body {
+    background: #e0e5ec;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 2rem;
+    color: #333;
+}
+
+h2, h3 {
+    text-align: center;
+    color: #444;
+    margin-bottom: 1rem;
+}
+
+form, table, .card {
+    background: #e0e5ec;
+    box-shadow: 8px 8px 15px #a3b1c6, -8px -8px 15px #ffffff;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem auto;
+    max-width: 400px;
+}
+
+label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="url"],
+input[type="checkbox"],
+input[type="submit"],
+button {
+    width: calc(100% - 2rem);
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    border: none;
+    border-radius: 0.75rem;
+    background: #e0e5ec;
+    box-shadow: inset 5px 5px 10px #bec6d4, inset -5px -5px 10px #ffffff;
+    transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover,
+button:hover {
+    box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+    cursor: pointer;
+}
+
+
+
+a {
+    color: #555;
+    text-decoration: none;
+    margin-left: 1rem;
+	margin-top: 0.5rem;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #333;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+button:focus, input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #a3b1c6;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  padding: 2rem 1rem;
+  background: #e0e5ec;
+  box-shadow: 8px 8px 15px #a3b1c6, -8px -8px 15px #ffffff;
+  border-radius: 0 1rem 1rem 0;
+}
+
+.profile {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.profile-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  box-shadow: inset 5px 5px 10px #bec6d4, inset -5px -5px 10px #ffffff;
+  margin-bottom: 1rem;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  margin: 1rem 0;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  display: block;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  transition: background 0.2s ease;
+}
+
+.menu a:hover {
+  background: #d1d9e6;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 1rem;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.content {
+    margin-left: 260px; /* sidebar幅 + 少し余裕 */
+    padding: 2rem;
+    flex: 1;
+}
+
+/* --- Profile セクション --- */
+.profile {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.profile-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+    margin-bottom: 1rem;
+}
+
+/* --- 招待コード発行エリア --- */
+.sidebar form,
+.sidebar p {
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* --- ナビメニュー --- */
+.menu ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.menu li {
+    margin: 1rem 0;
+}
+
+.menu a {
+    display: block;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    color: #333;
+    background: #e0e5ec;
+    box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.menu a:hover {
+    box-shadow: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff;
+}
+.invite-area {
+    text-align: center;
+    margin-top: 1rem;
+    width: calc(100% - 5rem);
+}
+
+.invite-btn {
+    width: 90%;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    background: #e0e5ec;
+    border: none;
+    box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.invite-btn:hover {
+    box-shadow: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff;
+    cursor: pointer;
+}
+input[type="checkbox"] {
+    appearance: checkbox;   /* ブラウザ標準表示に戻す */
+    -webkit-appearance: checkbox;
+    width: auto;
+    height: auto;
+    transform: none;
+    margin: 0;
+	accent-color: #007BFF; /* 濃い青、目立つ */
+	cursor: pointer;
+}
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #007BFF; /* 濃い青で視認性アップ */
+    border: 1px solid #333; /* 薄い色でも見えるように */
+    border-radius: 4px;
+    cursor: pointer;
+    appearance: auto; /* ブラウザ標準の表示に戻す */
+}
+.url-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: #eef2f7;
+    box-shadow: 6px 6px 12px #c5c9cf, -6px -6px 12px #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.url-table th,
+.url-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.url-table th {
+    background-color: #dde3ea;
+    font-weight: bold;
+}
+
+.url-link {
+    color: rgb(168, 228, 255);
+    text-decoration: underline;
+    word-break: break-all;
+}
+
+.inline-form {
+    display: inline;
+}
+.delete-btn {
+    padding: 6px 35px;
+    font-size: 14px;
+    background-color: rgb(168, 228, 255);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 4px 4px 8px #c5c9cf, -4px -4px 8px #ffffff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    writing-mode: horizontal-tb; /* 横向きに */
+    transform: rotate(0deg);     /* 明示的に横向き */
+    display: inline-block;
+	writing-mode: horizontal-tb;     /* ← 横書きに強制 */
+	   text-orientation: mixed;         /* ← 日本語でも横向き */
+	   display: inline-block;
+	   transform: rotate(0deg);   
+}
+
+.delete-btn:hover {
+    background-color: #d56a6a;
+}
+
+/* テーブルヘッダー・ラベル列を横書きに強制 */
+.url-table th,
+.url-table td {
+    writing-mode: horizontal-tb !important;
+    text-orientation: mixed !important;
+    white-space: nowrap; /* 折り返し防止（必要に応じて） */
+}
+
+/* 削除ボタンを横書き＆整形 */
+.delete-btn {
+    writing-mode: horizontal-tb !important;
+    text-orientation: mixed !important;
+    padding: 6px 16px;
+    font-size: 14px;
+    background-color: #f28b82;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 4px 4px 8px #c5c9cf, -4px -4px 8px #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+}
+.url-link {
+    display: inline-block;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+    color: #333;
+    text-decoration: none;
+}
+
+.url-link:hover {
+    text-decoration: underline;
+    color: #0077cc;
+}
+

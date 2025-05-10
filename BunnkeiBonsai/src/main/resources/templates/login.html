@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>ログイン</title>
+<link rel="stylesheet" th:href="@{/css/neumorphism.css}" />
 </head>
 <body>
 	<h2>ログイン画面</h2>
+	<br>
 	<span th:text = "${errorMsg}"></span>
 	<form th:action="@{/login}" method="post" th:object="${loginForm}">
 		<div>
@@ -18,9 +20,11 @@
 		</div>
 		<div>
 			<input type="submit" value="送信する">
+			
 		</div>	
+		<a th:href="@{/signup}">ユーザー登録はこちら</a>
 	</form>
-	<a th:href="@{/signup}">ユーザー登録</a>
+	
 	
 					
 </body>
