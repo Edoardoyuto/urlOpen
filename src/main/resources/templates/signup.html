@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ユーザ登録</title>
+    <link rel="stylesheet" th:href="@{/css/neumorphism.css}" />
+</head>
+<body>
+	<h2>ユーザ登録</h2>
+	<span th:text = "${message}"></span>
+	<form th:action="@{/signup}" method="post" th:object="${signupForm}">
+		<div>
+			<label>ログインID</label>
+			<input type="text" th:field="*{loginId}">  
+		</div>
+		<span th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}"></span>
+		<div>
+			<label>パスワード</label>
+			<input type="password" th:field="*{password}">
+		</div>
+		<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+		<div>
+			<input type="checkbox" th:field="*{host}">ホストアカウントの場合はチェック
+		</div>
+		<div>
+			<input type="submit" value="送信する">
+		</div>	
+		<a th:href="@{/login}">ログイン画面にもどる　</a>
+	</form>
+					
+</body>
+</html>

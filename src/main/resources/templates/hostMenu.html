@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Host Menu</title>
+    <link rel="stylesheet" th:href="@{/css/neumorphism.css}" />
+</head>
+<body>
+<div class="container">
+    <!-- 左サイドバー -->
+    <aside class="sidebar card">
+		<h2>Host Menu</h2>
+		
+        <div class="profile">
+            <img src="/img/profile.jpg" alt="プロフィール画像" class="profile-img">
+            <h3 th:text="${user}">ユーザーID</h3>
+        </div>
+
+        <!-- 招待コードエリア -->
+		<div class="invite-area">
+		    <form th:action="@{/invite-code/generate}" method="post">
+		        <button type="submit" class="invite-btn">招待コードを発行する</button>
+		    </form>
+		    <p th:if="${inviteCode}" th:text="'発行済み招待コード: ' + ${inviteCode}"></p>
+		</div>
+
+   
+    </aside>
+
+    <!-- メインコンテンツ -->
+    <main class="content">
+		
+		<!-- URL登録 -->
+				<div>
+		        
+		        <form th:action="@{/url/register}" method="post">
+					<h3>URL登録</h3>
+		            <label>ラベル：</label><input type="text" name="label" required>
+		            <label>URL：</label><input type="url" name="url" required>
+		            <button type="submit">登録</button>
+		        </form>
+
+        <!-- 生徒一覧 -->
+        
+        <table>
+			<h3>生徒一覧           </h3>
+            <thead>
+                <tr>
+                    <th>生徒ID</th>
+                    <th>送信対象にするか</th>
+                </tr>
+            </thead>
+            <tbody>
+				<tr th:each="student : ${students}">
+				    <td th:text="${student.studentId}"></td>
+				    <td>
+				        <input type="checkbox"
+				               th:attr="data-id=${student.id}"
+				               th:checked="${student.enabled}"
+				               onchange="updateStudentEnabled(this)">
+				    </td>
+				</tr>
+            </tbody>
+        </table>
+
+        
+
+		<h3>登録済みURL一覧</h3>
+		<table class="url-table">
+		    <thead>
+		        <tr>
+		            <th>ラベル</th>
+		            <th>URL</th>
+		            <th>登録日</th>
+		            <th>操作</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr th:each="url : ${urls}">
+		            <td th:text="${url.label}">ラベル</td>
+					<td>
+					    <a th:href="${url.url}"
+					       th:utext="${#strings.length(url.url) > 30 ? #strings.substring(url.url, 0, 30) + '...' : url.url}"
+					       th:attr="title=${url.url}"
+					       class="url-link"
+					       target="_blank">
+					    </a>
+					</td>
+		            <td th:text="${#dates.format(url.createdAt, 'yyyy/MM/dd HH:mm')}">登録日</td>
+		            <td>
+		                <form th:action="@{/url/delete}" method="post" class="inline-form">
+		                    <input type="hidden" name="urlId" th:value="${url.id}" />
+		                    <button type="submit" class="delete-btn" onclick="return confirm('本当に削除しますか？')">削除</button>
+		                </form>
+		            </td>
+		        </tr>
+		    </tbody>
+		</table>
+    </main>
+</div>
+
+</body>
+<script>
+	function updateStudentEnabled(checkbox) {
+	    const studentId = checkbox.getAttribute("data-id");
+	    const isEnabled = checkbox.checked;
+
+	    fetch("/student/update-enabled-api", {
+	        method: "POST",
+	        headers: {
+	            'Content-Type': 'application/x-www-form-urlencoded'
+	        },
+	        body: `id=${encodeURIComponent(studentId)}&isEnabled=${isEnabled ? 'on' : ''}`
+	    }).then(response => {
+	        if (!response.ok) {
+	            alert("更新に失敗しました");
+	        }
+	    }).catch(error => {
+	        console.error("通信エラー:", error);
+	        alert("通信エラーが発生しました");
+	    });
+	}
+</script>
+</html>
